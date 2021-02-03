@@ -32,11 +32,14 @@ var listener = app.listen(process.env.PORT, function () {
   console.log('Your app is listening on port ' + listener.address().port);
 });
 
-let responseObj;
+let responseObj={};
 app.enable('trust proxy');
 
 app.get('/api/whoami',(request, response)=>{
-  responseObj['ipadress']=request.
+  responseObj['ipaddress']=request.ip;
+  responseObj['language']=request.get('Accept-Language');
+  responseObj['software']=request.get('User-Agent');
+  
   
   response.json(responseObj)
 })
